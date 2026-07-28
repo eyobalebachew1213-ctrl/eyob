@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZOMA Store - Admin Dashboard</title>
+    <!-- Google Font & Icons for Clean Modern UI -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #003b5c;
+            --accent-color: #009fe3;
+            --accent-hover: #007bb5;
+            --bg-color: #f4f7f9;
+            --card-bg: #ffffff;
+            --text-color: #2c3e50;
+            --text-muted: #7f8c8d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 20px;
+            /* ለሞባይል ባር ቦታ ለመተው ከታች ትንሽ ክፍተት ይጨመራል */
+            padding-bottom: 80px; 
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .logo-wrapper {
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            width: 160px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .welcome-text {
+            font-size: 15px;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .stat-card i {
+            font-size: 24px;
+            color: var(--accent-color);
+            margin-bottom: 8px;
+        }
+
+        .stat-card h3 {
+            font-size: 20px;
+            color: var(--primary-color);
+        }
+
+        .stat-card p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* Desktop Navigation Links */
+        .nav-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .nav-links a {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 159, 227, 0.3);
+        }
+
+        .card {
+            padding: 25px;
+            background: #f8fafc;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            text-align: left;
+        }
+
+        .card h2 {
+            color: var(--primary-color);
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        footer {
+            margin-top: 30px;
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        /* ===========================================
+           MOBILE BOTTOM NAVIGATION (ከታች የሚመጣው አዝራር)
+           =========================================== */
+        .mobile-bottom-nav {
+            display: none; /* በኮምፒውተር ስክሪን አይታይም */
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #ffffff;
+            box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.1);
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 0;
+            z-index: 1000;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .mobile-bottom-nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 11px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.2s;
+        }
+
+        .mobile-bottom-nav a i {
+            font-size: 18px;
+        }
+
+        .mobile-bottom-nav a.active,
+        .mobile-bottom-nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Media Query for Mobile Views */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+                padding-bottom: 80px;
+            }
+
+            .container {
+                padding: 20px 15px;
+            }
+
+            /* በሞባይል ጊዜ የከታቹ Bottom Bar እንዲታይ ማድረግ */
+            .mobile-bottom-nav {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- ZOMA STORE LOGO -->
+        <div class="logo-wrapper">
+            <img src="logo.png" alt="ZOMA Store Logo" class="logo">
+        </div>
+
+        <h1>እንኳን ወደ ZOMA Store በሰላም መጡ!</h1>
+
+        <p class="welcome-text">
+            ይህ የ ZOMA Store Admin Dashboard ነው። የምርቶችን እና የኦንላይን ሱቅዎን ከዚህ ማስተዳደር ይችላሉ።
+        </p>
+
+        <!-- Quick Summary Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <i class="fa-solid fa-box"></i>
+                <h3>120</h3>
+                <p>ምርቶች</p>
+            </div>
+            <div class="stat-card">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <h3>45</h3>
+                <p>ትዕዛዞች</p>
+            </div>
+            <div class="stat-card">
+                <i class="fa-solid fa-users"></i>
+                <h3>89</h3>
+                <p>ደንበኞች</p>
+            </div>
+        </div>
+
+        <!-- Navigation Links (Desktop/Tablet) -->
+        <div class="nav-links">
+            <a href="#"><i class="fa-solid fa-plus"></i> Add Product</a>
+            <a href="#"><i class="fa-solid fa-list"></i> View Products</a>
+            <a href="#"><i class="fa-solid fa-cart-flatbed"></i> Orders</a>
+            <a href="#"><i class="fa-solid fa-user-group"></i> Customers</a>
+        </div>
+
+        <div class="card">
+            <h2>የ ZOMA Store አስተዳደር</h2>
+            <p>
+                እዚህ ላይ ምርቶችን መጨመር፣ ማየት እና የደንበኞችን ትዕዛዝ ማስተዳደር ይችላሉ።
+            </p>
+        </div>
+
+        <footer>
+            © 2026 ZOMA Store. All Rights Reserved.
+        </footer>
+
+    </div>
+
+    <!-- Mobile Bottom Navigation Bar (በስልክ ብቻ የሚታይ) -->
+    <nav class="mobile-bottom-nav">
+        <a href="#" class="active">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+        </a>
+        <a href="#">
+            <i class="fa-solid fa-plus"></i>
+            <span>Add</span>
+        </a>
+        <a href="#">
+            <i class="fa-solid fa-box"></i>
+            <span>Products</span>
+        </a>
+        <a href="#">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Orders</span>
+        </a>
+        <a href="#">
+            <i class="fa-solid fa-users"></i>
+            <span>Users</span>
+        </a>
+    </nav>
+
+</body>
+</html>
