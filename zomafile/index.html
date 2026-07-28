@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZOMA - ዞማ ማርኬት</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+            padding-bottom: 60px; /* Space for bottom nav */
+        }
+        /* Header & Navigation - Yellow Theme */
+        .header {
+            background-color: #FFD700;
+            padding: 10px;
+        }
+        .top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            padding: 5px 10px;
+            border-radius: 6px;
+        }
+        .logo-icon {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ff8c00;
+            margin-right: 5px;
+        }
+        .logo-text h1 {
+            font-size: 16px;
+            color: #333;
+            line-height: 1;
+        }
+        .logo-text span {
+            font-size: 10px;
+            color: #666;
+        }
+        .top-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .lang-select {
+            padding: 4px 6px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            background: #fff;
+            font-size: 11px;
+        }
+        
+        /* Search Bar */
+        .search-container {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        .search-input {
+            flex: 1;
+            padding: 9px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 13px;
+            outline: none;
+        }
+        .search-btn {
+            background-color: #ff8c00;
+            color: white;
+            border: none;
+            padding: 0 12px;
+            border-radius: 0 4px 4px 0;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Tabs like AI Mode / Products */
+        .tabs-row {
+            display: flex;
+            background-color: #FFD700;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 0 5px 5px 5px;
+            gap: 15px;
+            font-size: 14px;
+            border-bottom: 1px solid #e5c100;
+        }
+        .tab-item {
+            color: #444;
+            text-decoration: none;
+            font-weight: bold;
+            padding-bottom: 3px;
+        }
+        .tab-item.active {
+            color: #000;
+            border-bottom: 2px solid #000;
+        }
+
+        /* Sub Categories Horizontal Scroll */
+        .sub-cats {
+            display: flex;
+            background: #fff;
+            padding: 8px 10px;
+            overflow-x: auto;
+            gap: 15px;
+            font-size: 13px;
+            white-space: nowrap;
+            border-bottom: 1px solid #eee;
+        }
+        .sub-cat-item {
+            color: #333;
+            text-decoration: none;
+        }
+
+        /* Top Deals Section */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 10px 8px 10px;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            padding: 0 10px;
+        }
+        .product-card {
+            background: white;
+            border-radius: 6px;
+            padding: 10px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .product-card img {
+            width: 100%;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        .product-price {
+            color: #d32f2f;
+            font-weight: bold;
+            font-size: 15px;
+            margin-top: 5px;
+        }
+        .product-desc {
+            font-size: 11px;
+            color: #666;
+            margin-top: 2px;
+        }
+
+        /* Bottom App Navigation Bar */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #ffffff;
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+            border-top: 1px solid #ddd;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+        .nav-link {
+            text-decoration: none;
+            color: #666;
+            font-size: 11px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .nav-link.active {
+            color: #ff8c00;
+        }
+        .nav-link span.icon {
+            font-size: 18px;
+            margin-bottom: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Header -->
+    <header class="header">
+        <div class="top-row">
+            <div class="logo-container">
+                <div class="logo-icon">🌐</div>
+                <div class="logo-text">
+                    <h1>ZOMA</h1>
+                    <span>ዞማ ማርኬት</span>
+                </div>
+            </div>
+            <div class="top-actions">
+                <select class="lang-select">
+                    <option>EN</option>
+                    <option>አማ</option>
+                </select>
+                <a href="#" style="text-decoration:none; font-size:12px; font-weight:bold; color:#222;">Sign in</a>
+            </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search products, suppliers...">
+            <button class="search-btn">🔍</button>
+        </div>
+
+        <!-- Alibaba-style Tabs -->
+        <div class="tabs-row">
+            <a href="#" class="tab-item">AI Mode</a>
+            <a href="#" class="tab-item active">Products</a>
+            <a href="#" class="tab-item">Manufacturers</a>
+            <a href="#" class="tab-item">Wholesale</a>
+        </div>
+    </header>
+
+    <!-- Sub Categories Row -->
+    <div class="sub-cats">
+        <a href="#" class="sub-cat-item"><b>All</b></a>
+        <a href="#" class="sub-cat-item">Consumer Electronics</a>
+        <a href="#" class="sub-cat-item">Food & Groceries</a>
+        <a href="#" class="sub-cat-item">Beauty & Cosmetics</a>
+        <a href="#" class="sub-cat-item">Phones & Telecom</a>
+    </div>
+
+    <!-- Top Deals -->
+    <div class="section-header">
+        <div class="section-title">Top Deals</div>
+        <span style="font-size: 13px; color: #ff8c00;">See all ›</span>
+    </div>
+
+    <div class="products-grid">
+        <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=300&q=80" alt="Product">
+            <div class="product-price">ETB 7,522.16</div>
+            <div class="product-desc">Lower priced than similar</div>
+        </div>
+        <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=300&q=80" alt="Product">
+            <div class="product-price">ETB 10,745.94</div>
+            <div class="product-desc">Lower priced than similar</div>
+        </div>
+    </div>
+
+    <!-- Bottom App Navigation (Alibaba Style) -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-link active">
+            <span class="icon">🏠</span>
+            Home
+        </a>
+        <a href="#" class="nav-link">
+            <span class="icon">📂</span>
+            Categories
+        </a>
+        <a href="#" class="nav-link">
+            <span class="icon">💬</span>
+            Messenger
+        </a>
+        <a href="#" class="nav-link">
+            <span class="icon">🛒</span>
+            Cart
+        </a>
+        <a href="#" class="nav-link">
+            <span class="icon">👤</span>
+            My Zoma
+        </a>
+    </nav>
+
+</body>
+</html>
